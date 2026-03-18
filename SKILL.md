@@ -1,96 +1,29 @@
-# CapSolver Skills
+---
+name: capsolver
+description: Use capsolver to automatically resolve Geetest, reCAPTCHA v2, reCAPTCHA v3, MTCaptcha, DataDome, AWS WAF, Cloudflare Turnstile, and Cloudflare Challenge, etc.
+homepage: https://capsolver.com/
+credentials:
+  - API_KEY
+env:
+  required:
+    - API_KEY
+---
 
-A collection of skills for the CapSolver, unleashing your RPA potential.
+# CapSolver Skill
 
-## Table of Contents
+Use this skill to automatically resolve various CAPTCHA challenges using the CapSolver API service. The skill supports Geetest, reCAPTCHA v2/v3, MTCaptcha, DataDome, AWS WAF, Cloudflare Turnstile, Cloudflare Challenge, and more.
 
-- [Supported captcha types](#supported-captcha-types)
-- [Directory Structure](#directory-structure)
-- [Installation](#installation)
-- [Environment Configuration](#environment-configuration)
-- [Usage Examples](#usage-examples)
-  - [Task(Recognition)](#taskrecognition)
-    - [ImageToTextTask](#imagetotexttask)
-    - [ReCaptchaV2Classification](#ReCaptchaV2Classification)
-    - [AwsWafClassification](#AwsWafClassification)
-    - [VisionEngine](#VisionEngine)
-  - [Task(Token)](#tasktoken)
-    - [GeeTest](#geetest)
-    - [reCAPTCHA v2](#recaptcha-v2)
-    - [reCAPTCHA v3](#recaptcha-v3)
-    - [MTCaptcha](#mtcaptcha)
-    - [DataDome](#datadome)
-    - [AWS WAF](#aws-waf)
-    - [Cloudflare Turnstile](#cloudflare-turnstile)
-    - [Cloudflare Challenge](#cloudflare-challenge)
-- [Resources](#resources)
+**Authentication:** Set `API_KEY` in your environment or in a `.env` file in the repo root.
 
-## Supported captcha types
+**Errors:** If it fails, the script will exit with code 1.
 
-Task(Recognition)
-1. ImageToText
-2. reCAPTCHA v2
-3. AWS WAF
-4. VisionEngine
+---
 
-Task(Token)
-1. Geetest V3
-2. Geetest V4
-3. reCAPTCHA v2
-4. reCAPTCHA v3
-5. Cloudflare Turnstile
-6. Cloudflare Challenge
-7. DataDome
-8. AWS WAF
-9. MTCaptcha
+# Solver
 
-## Directory Structure
+## Task(Recognition)
 
-```
-capsolver/
-├── scripts/               # The capsolver script for this skill
-├── SKILL.md               # Skill metadata
-├── README.md              # README.md
-├── requirements.txt       # Python dependencies
-└── .env.example           # Example environment file
-```
-
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/capsolver/capsolver-skills.git
-cd capsolver-skills
-```
-
-2. Install python dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Environment Configuration
-
-1. Create a `.env` file in the root directory based on the `.env.example` file:
-
-```bash
-cp .env.example .env
-```
-
-2. Add your CapSolver API key to the `.env` file:
-
-```
-API_KEY=CAP-XXXXX-your-api-key-here
-```
-
-You can get an API key from the [CapSolver Dashboard](https://dashboard.capsolver.com/).
-
-## Usage Examples
-
-### Task(Recognition)
-
-#### ImageToTextTask
+### ImageToTextTask
 
 Solve text-based captcha.
 
@@ -110,7 +43,7 @@ Optional:
 
 ---
 
-#### ReCaptchaV2Classification
+### ReCaptchaV2Classification
 
 Classify reCAPTCHA v2 images.
 
@@ -129,7 +62,7 @@ Optional:
 
 ---
 
-#### AwsWafClassification
+### AwsWafClassification
 
 Classify AWS WAF images.
 
@@ -153,7 +86,7 @@ Optional:
 
 ---
 
-#### VisionEngine
+### VisionEngine
 
 Advanced AI vision-based captcha solving.
 
@@ -172,9 +105,9 @@ Optional:
 
 ---
 
-### Task(Token)
+## Task(Token)
 
-#### GeeTest
+### GeeTest
 
 Solve GeeTest captcha (v3/v4).
 
@@ -193,7 +126,7 @@ Optional:
 
 ---
 
-#### reCAPTCHA v2
+### reCAPTCHA v2
 
 Solve Google reCAPTCHA v2 (checkbox/invisible).
 
@@ -216,7 +149,7 @@ Optional:
 
 ---
 
-#### reCAPTCHA v3
+### reCAPTCHA v3
 
 Solve Google reCAPTCHA v3.
 
@@ -238,7 +171,7 @@ Optional:
 
 ---
 
-#### MTCaptcha
+### MTCaptcha
 
 Solve MTCaptcha.
 
@@ -257,7 +190,7 @@ Optional:
 
 ---
 
-#### DataDome
+### DataDome
 
 Solve DataDome.
 
@@ -275,7 +208,7 @@ Optional:
 
 ---
 
-#### AWS WAF
+### AWS WAF
 
 Solve AWS WAF.
 
@@ -301,7 +234,7 @@ Optional:
 
 ---
 
-#### Cloudflare Turnstile
+### Cloudflare Turnstile
 
 Solve Cloudflare Turnstile.
 
@@ -319,7 +252,7 @@ Optional:
 
 ---
 
-#### Cloudflare Challenge
+### Cloudflare Challenge
 
 Solve Cloudflare Challenge (5-second shield).
 
@@ -336,6 +269,232 @@ Optional:
 - `--html`: The response of requesting the target website, it usually contains "Just a moment…" and status code is 403. we need this html for some websites, please be sure to use your sticky proxy to dynamically scrape the HTML every time.
 - `--max-retries`: Maximum number of retries (default: 60).
 
-## Resources
+---
 
-- [CapSolver Docs](https://docs.capsolver.com/) - The official capsolver documentation allows you to find answers to any questions you are unsure of here
+## Response example
+
+**Output:** All commands return JSON objects with task-specific solution fields.
+
+### ImageToTextTask
+
+```json
+{
+  "errorId": 0,
+  "errorCode": "",
+  "errorDescription": "",
+  "status": "ready",
+  "solution": {
+    "text": "44795sds",
+    // number module:
+	"answers": ["100", "1330", "147", "248", "303", "439", "752", "752", "752"],
+  },
+  "taskId": "..."
+}
+```
+
+### ReCaptchaV2Classification
+
+multi objects:
+
+```json
+{
+ "errorId": 0,
+ "status": "ready",
+ "solution": {
+   "type": "multi",
+   "objects": [
+     0,
+     1,
+     2,
+     3
+   ],
+   "size": 4,
+   // 3 or 4
+ },
+ "taskId": "cbb1c730-e569-4ba6-b5fc-e06377694aa7"
+}
+```
+
+single object:
+
+```json
+{
+ "errorId": 0,
+ "status": "ready",
+ "solution": {
+   "type": "single",
+   "hasObject": true,
+   "size": 1,
+ },
+ "taskId": "cbb1c730-e569-4ba6-b5fc-e06377694aa7"
+}
+```
+
+### AwsWafClassification
+
+```json
+{
+ "errorId": 0,
+ "status": "ready",
+ "solution": {
+   //carcity point
+   "box": [
+     116.7,
+     164.1
+   ],
+   // grid type, objects means the image index that matches the question
+   "objects": [0, 1, 3, 4, 6],
+   //if question include `bifurcatedzoo`
+   "distance": 500
+ },
+ "taskId": "cbb1c730-e569-4ba6-b5fc-e06377694aa7"
+}
+```
+
+### VisionEngine
+
+```json
+{
+  "errorId": 0,
+  "errorCode": "",
+  "errorDescription": "",
+  "status": "ready",
+  "solution": {
+     "distance": 213,
+  },
+  "taskId": "cbb1c730-e569-4ba6-b5fc-e06377694aa7"
+}
+```
+
+### GeeTest
+
+Geetest v3:
+
+```json
+{
+  "errorId": 0,
+  "taskId": "e0ecaaa8-06f6-41fd-a02e-a0c79b957b15",
+  "status": "ready",
+  "solution": {
+    "challenge": "...",
+    "validate": "...",
+    "seccode": "...",
+    "userAgent": "..."
+  },
+}
+```
+
+Geetest v4:
+
+```json
+{
+  "errorId": 0,
+  "taskId": "e0ecaaa8-06f6-41fd-a02e-a0c79b957b15",
+  "status": "ready",
+  "solution": {
+    "captcha_id": "",
+    "captcha_output": "",
+    "gen_time": "",
+    "lot_number": "",
+    "pass_token": "",
+    "risk_type": "slide"
+  }
+}
+```
+
+### reCAPTCHA
+
+reCAPTCHA v2/v3:
+
+```json
+{
+    "errorId": 0,
+    "errorCode": null,
+    "errorDescription": null,
+    "solution": {
+        "userAgent": "xxx", // User-Agent
+        "secChUa": "xxx", // Sec-Ch-Ua
+        "createTime": 1671615324290, // The creation time of the token
+        "gRecaptchaResponse": "3AHJ......", // token
+        "recaptcha-ca-t": "AbEM......", // Some v3 websites have session mode. After enabling isSession, this parameter will be returned and used as a cookie.
+        "recaptcha-ca-e": "Abp_......" // Some v2 websites have this parameter, which is used as a cookie. If there is such a value, it will be automatically returned.
+    },
+    "status": "ready"
+}
+```
+
+### MTCaptcha
+
+```json
+{
+  "errorId": 0,
+  "taskId": "646825ef-9547-4a29-9a05-50a6265f9d8a",
+  "status": "ready",
+  "solution": {
+    "token": ""
+  }
+}
+```
+
+### DataDome
+
+```json
+{
+  "errorId": 0,
+  "errorCode": null,
+  "errorDescription": null,
+  "solution": {
+    "cookie": "datadome=yzj_BK...S0; Max-Age=31536000; Domain=; Path=/; Secure; SameSite=Lax"
+  },
+  "status": "ready"
+}
+```
+
+### AWS WAF
+
+```json
+{
+  "errorId": 0,
+  "taskId": "646825ef-9547-4a29-9a05-50a6265f9d8a",
+  "status": "ready",
+  "solution": {
+    "cookie": "223d1f60-0e9f-4238-ac0a-e766b15a778e:EQoAf0APpGIKAAAA:AJam3OWpff1VgKIJxH4lGMMHxPVQ0q0R3CNtgcMbR4VvnIBSpgt1Otbax4kuqrgkEp0nFKanO5oPtwt9+Butf7lt0JNe4rZQwZ5IrEnkXvyeZQPaCFshHOISAFLTX7AWHldEXFlZEg7DjIc="
+  }
+}
+```
+
+### Cloudflare Turnstile
+
+```json
+{
+  "errorId": 0,
+  "taskId": "61138bb6-19fb-11ec-a9c8-0242ac110006",
+  "status": "ready",
+  "errorCode": null,
+  "errorDescription": null,
+  "solution": {
+    "token": "0.mF74FV8wEufAWOdvOak_xFaVy3lqIDel7SwNhw3GgpICSWwTjYfrQB8mRT1dAJJBEoP7N1sESdp6WH9cTS1T0catWLecG3ayNcjwxVtr3hWfS-dmcBGRTx4xYwI64sAVboYGpIyuDBeMIRC3W8dK35v1nDism9xa595Da5VlXKM7hk7pIXg69lodfiftasIkyD_KUGkxBwxvrmz7dBo10-Y5zvro9hD4QKRjOx7DYj9sumnkyYCDx0m4ImDIIkNswfVTWI2V22wlnpHdvMgdtKYgOIIAU28y9gtdrdDkpkH0GHcDyd15sxQGd9VjwhGZA_mpusUKMsEoGgst2rJ3zA.UWfZupqLlGvlATkPo3wdaw.38d55cd0163610d8ce8c42fcff7b62d8981495cc1afacbb2f14e5a23682a4e13",
+    "type": "turnstile",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+  }
+}
+```
+
+### Cloudflare Challenge
+
+```json
+{
+  "errorId": 0,
+  "taskId": "df944101-64ac-468d-bc9f-41baecc3b8ca",
+  "status": "ready",
+  "errorCode": "",
+  "errorDescription": "",
+  "solution": {
+    "cookies": {
+        "cf_clearance": "Bcg6jNLzTVaa3IsFhtDI.e4_LX8p7q7zFYHF7wiHPo...uya1bbdfwBEi3tNNQpc"
+    },
+    "token": "Bcg6jNLzTVaa3IsFhtDI.e4_LX8p7q7zFYHF7wiHPo...uya1bbdfwBEi3tNNQpc",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
+  }
+}
+```
