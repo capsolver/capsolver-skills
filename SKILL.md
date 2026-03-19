@@ -30,8 +30,8 @@ Solve text-based captcha.
 **Command:**
 
 ```bash
-python3 solver.py ImageToTextTask --body "base64_image_data"
-python3 solver.py ImageToTextTask --body "base64_image_data" --module "module_001"
+python3 ./scripts/solver.py ImageToTextTask --body "base64_image_data"
+python3 ./scripts/solver.py ImageToTextTask --body "base64_image_data" --module "module_001"
 ```
 
 Optional:
@@ -50,7 +50,7 @@ Classify reCAPTCHA v2 images.
 **Command:**
 
 ```bash
-python3 solver.py ReCaptchaV2Classification --question "question" --image "base64_image_data"
+python3 ./scripts/solver.py ReCaptchaV2Classification --question "question" --image "base64_image_data"
 ```
 
 Optional:
@@ -69,13 +69,13 @@ Classify AWS WAF images.
 **Command:**
 
 ```bash
-python3 solver.py AwsWafClassification --question "question" --images "base64_image_data1" "base64_image_data2" "base64_image_data3"
+python3 ./scripts/solver.py AwsWafClassification --question "question" --images "base64_image_data1" "base64_image_data2" "base64_image_data3"
 ```
 
 Too many images may exceed the command line length limit. You can try writing the base64 values of the images line by line to a file (such as aws_images.txt) and then using the xargs command to pass them to the --images parameter:
 
 ```bash
-cat aws_images.txt | xargs python3 solver.py AwsWafClassification --question "question" --images
+cat aws_images.txt | xargs python3 ./scripts/solver.py AwsWafClassification --question "question" --images
 ```
 
 Optional:
@@ -92,7 +92,7 @@ Advanced AI vision-based captcha solving.
 
 **Command:**
 ```bash
-python3 solver.py VisionEngine --module "module" --image "base64_image_data" --imageBackground "base64_image_background_data"
+python3 ./scripts/solver.py VisionEngine --module "module" --image "base64_image_data" --imageBackground "base64_image_background_data"
 ```
 
 Optional:
@@ -113,7 +113,7 @@ Solve GeeTest captcha (v3/v4).
 
 **Command:**
 ```bash
-python3 solver.py GeeTestTaskProxyLess --websiteURL "https://example.com/" --captchaId "captcha_id"
+python3 ./scripts/solver.py GeeTestTaskProxyLess --websiteURL "https://example.com/" --captchaId "captcha_id"
 ```
 
 Optional:
@@ -133,8 +133,8 @@ Solve Google reCAPTCHA v2 (checkbox/invisible).
 **Command:**
 
 ```bash
-python3 solver.py ReCaptchaV2TaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
-python3 solver.py ReCaptchaV2Task --websiteURL "https://example.com" --websiteKey "site_key" --proxy "host:port:username:password"
+python3 ./scripts/solver.py ReCaptchaV2TaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
+python3 ./scripts/solver.py ReCaptchaV2Task --websiteURL "https://example.com" --websiteKey "site_key" --proxy "host:port:username:password"
 ```
 
 Optional:
@@ -156,8 +156,8 @@ Solve Google reCAPTCHA v3.
 **Command:**
 
 ```bash
-python3 solver.py ReCaptchaV3TaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
-python3 solver.py ReCaptchaV3Task --websiteURL "https://example.com" --websiteKey "site_key" --proxy "host:port:username:password"
+python3 ./scripts/solver.py ReCaptchaV3TaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
+python3 ./scripts/solver.py ReCaptchaV3Task --websiteURL "https://example.com" --websiteKey "site_key" --proxy "host:port:username:password"
 ```
 
 Optional:
@@ -178,8 +178,8 @@ Solve MTCaptcha.
 **Command:**
 
 ```bash
-python3 solver.py MtCaptchaTaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
-python3 solver.py MtCaptchaTask --websiteURL "https://example.com" --websiteKey "site_key" --proxy "host:port:username:password"
+python3 ./scripts/solver.py MtCaptchaTaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
+python3 ./scripts/solver.py MtCaptchaTask --websiteURL "https://example.com" --websiteKey "site_key" --proxy "host:port:username:password"
 ```
 
 Optional:
@@ -197,7 +197,7 @@ Solve DataDome.
 **Command:**
 
 ```bash
-python3 solver.py DatadomeSliderTask --captchaUrl "https://geo.captcha-delivery.com/xxxxxxxxx" --userAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" --proxy "host:port:username:password"
+python3 ./scripts/solver.py DatadomeSliderTask --captchaUrl "https://geo.captcha-delivery.com/xxxxxxxxx" --userAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" --proxy "host:port:username:password"
 ```
 
 Optional:
@@ -214,9 +214,9 @@ Solve AWS WAF.
 
 **Command:**
 ```bash
-python3 solver.py AntiAwsWafTask --websiteURL "https://example.com" --awsChallengeJS "https://path/to/challenge.js" --proxy "host:port:username:password"
-python3 solver.py AntiAwsWafTaskProxyLess --websiteURL "https://example.com" --awsChallengeJS "https://path/to/challenge.js"
-python3 solver.py AntiAwsWafTaskProxyLess --websiteURL "https://example.com"
+python3 ./scripts/solver.py AntiAwsWafTask --websiteURL "https://example.com" --awsChallengeJS "https://path/to/challenge.js" --proxy "host:port:username:password"
+python3 ./scripts/solver.py AntiAwsWafTaskProxyLess --websiteURL "https://example.com" --awsChallengeJS "https://path/to/challenge.js"
+python3 ./scripts/solver.py AntiAwsWafTaskProxyLess --websiteURL "https://example.com"
 ```
 
 Optional:
@@ -240,7 +240,7 @@ Solve Cloudflare Turnstile.
 
 **Command:**
 ```bash
-python3 solver.py AntiTurnstileTaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
+python3 ./scripts/solver.py AntiTurnstileTaskProxyLess --websiteURL "https://example.com" --websiteKey "site_key"
 ```
 
 Optional:
@@ -258,7 +258,7 @@ Solve Cloudflare Challenge (5-second shield).
 
 **Command:**
 ```bash
-python3 solver.py AntiCloudflareTask --websiteURL "https://example.com" --proxy "host:port:username:password"
+python3 ./scripts/solver.py AntiCloudflareTask --websiteURL "https://example.com" --proxy "host:port:username:password"
 ```
 
 Optional:
